@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next-Auth 기반 사용자 관리 시스템
 
-## Getting Started
+## 프로젝트 개요
 
-First, run the development server:
+클라이언트 사이드에서 사용자 인증 및 토큰 관리를 구현하는 Next.js 기반의 인증 시스템
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 프로젝트 목적
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Next.js 서버를 활용한 클라이언트 사이드 사용자 관리 구현
+- 효율적인 토큰 기반 인증 시스템 구축
+- 백엔드 의존성 최소화를 통한 확장성 있는 아키텍처 설계
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 기술 스택
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Frontend
 
-## Learn More
+- Next.js: 서버 사이드 렌더링 및 라우팅
+- React: 사용자 인터페이스 구현
+- Next-Auth: 인증 시스템 구현
+- React 관련 라이브러리: UI/UX 개선
 
-To learn more about Next.js, take a look at the following resources:
+### Backend & Database
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Prisma: ORM을 통한 데이터베이스 관리
+- MySQL: 사용자 정보 저장 및 관리
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 주요 기능
 
-## Deploy on Vercel
+1. 사용자 인증
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   - 회원가입/로그인
+   - 소셜 로그인 연동
+   - 비밀번호 재설정
+   - 이메일 인증
+   - 관리자 기능
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+2. 토큰 관리
+
+   - JWT 토큰 발급 및 갱신
+   - 세션 관리
+   - 보안 토큰 저장
+
+3. 사용자 관리
+   - 프로필 관리
+   - 권한 관리
+   - 사용자 정보 CRUD
+
+## 개발 환경
+
+- 운영체제: Windows, MacOS
+- 지원 플랫폼: 데스크톱, 모바일 웹
+
+## 개발 일정
+
+- 기간: 2025년 1월 ~ 2025년 2월
+- 주요 마일스톤:
+  1. 프로젝트 설정 및 기본 구조 구축
+  2. Next-Auth 통합 및 기본 인증 구현
+  3. 데이터베이스 연동 및 사용자 정보 관리
+  4. UI/UX 개선 및 테스팅
+  5. 배포 및 문서화
+
+## 기대 효과
+
+1. 클라이언트 중심의 인증 시스템으로 서버 부하 감소
+2. Next-Auth를 통한 안정적인 인증 프로세스 구현
+3. 확장 가능한 사용자 관리 시스템 구축
+4. 크로스 플랫폼 지원으로 접근성 향상
+
+## 보안 고려사항
+
+- HTTPS 적용
+- 토큰 암호화 및 안전한 저장
+- XSS/CSRF 공격 방지
+- 민감한 사용자 정보 보호
+
+## 확장성 계획
+
+- 다양한 소셜 로그인 추가 지원
+- 다국어 지원
+- 사용자 분석 기능 추가
+- API 키 관리 시스템 통합
