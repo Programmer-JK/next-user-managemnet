@@ -1,11 +1,19 @@
 "use client";
 import profileImg from "@/asset/img/profile.jpg";
+import Header from "@/components/header/header";
 import MypageProfile from "@/components/mypage/mypage-profile";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
+
+const UserInfo: object = {
+  userName: "test",
+  userEmail: "test@test.com",
+  userRole: "관리자",
+};
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-gray-200">
+      <Header />
       <div className="flex flex-col md:flex-row gap-1 justify-center">
         <div className="bg-white hidden w-96 md:flex h-screen flex-col items-center pt-10 ml-5">
           <div className="py-24 px-4 w-fit mx-auto">
@@ -13,13 +21,14 @@ export default function Home() {
           </div>
           <MypageProfile img={profileImg} />
           <div className="flex flex-col text-gray-800 text-center">
-            <div className="text-xl mt-4 font-bold">인ㄱ</div>
-            <div className="mb-4 text-gray-500">testEmail@test.com</div>
+            <div className="text-xl mt-4 font-bold">{UserInfo.userName}</div>
+            <div className="mb-4 text-gray-500">{UserInfo.userEmail}</div>
           </div>
           <button className="bg-slate-500 px-2 py-1 rounded-lg text-white">
             로그아웃
           </button>
         </div>
+
         <div className="mt-16 px-4 w-fit mx-auto md:hidden">
           <p className="text-3xl font-semibold text-gray-800">마이페이지</p>
         </div>
@@ -51,7 +60,7 @@ export default function Home() {
                       <span className="text-gray-600 font-extrabold w-24">
                         닉네임
                       </span>
-                      <div className="rounded-md">인ㄱ</div>
+                      <div className="rounded-md">{UserInfo.userName}</div>
                     </div>
                     <div className="flex items-center gap-2">
                       <button className="bg-slate-500 w-28 px-2 py-1 rounded-lg text-white">
@@ -65,7 +74,7 @@ export default function Home() {
                     <span className="text-gray-600 font-extrabold w-24">
                       회원등급
                     </span>
-                    <div className="rounded-md">관리자</div>
+                    <div className="rounded-md">{UserInfo.userRole}</div>
                   </div>
 
                   {/* Password Row */}
