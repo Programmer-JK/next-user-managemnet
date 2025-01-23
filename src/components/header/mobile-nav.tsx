@@ -1,18 +1,18 @@
 import { useState } from "react";
 import Link from "next/link";
-import { Cross, Menu } from "lucide-react";
+import { Cross, Menu, X } from "lucide-react";
+import { signIn, useSession } from "next-auth/react";
 const MobileNav = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
 
   const menuItems = [{ href: "/mypage", text: "마이페이지" }];
+  const { data: session } = useSession();
 
   return (
     <div className="relative">
       <button onClick={toggleMenu}>
-        {!isOpen && (
-          <Menu width="2rem" height="2rem" className="w-8 h-8 text-white" />
-        )}
+        {!isOpen && <Menu width="2rem" height="2rem" className=" text-black" />}
       </button>
 
       <div
@@ -29,36 +29,47 @@ const MobileNav = () => {
           ${isOpen ? "translate-x-0" : "translate-x-full"}
     `}
       >
-        {/* 닫기 버튼 */}
         <div className="flex justify-end">
           <button onClick={toggleMenu} className="m-5">
-            <Cross width="1.5rem" height="1.5rem" fill="white" />
+            <X width="2rem" height="2rem" strokeWidth={2.25} color="white" />
           </button>
         </div>
-        <div className="flex flex-col items-center mb-8">
-          <div className="w-16 h-16 bg-white rounded-full mb-3" />
-          <div className="text-white text-2xl">박종권</div>
-        </div>
-        <div className="flex-grow border-t border-gray-300 m-5" />
+        {/* 닫기 버튼 */}
+        {session && session.user ? (
+          <div>
+            <div className="flex flex-col items-center mb-8">
+              <div className="w-16 h-16 bg-white rounded-full mb-3" />
+              <div className="text-white text-2xl">{session.user.name}</div>
+            </div>
+            <div className="flex-grow border-t border-gray-300 m-5" />
 
-        <div>
-          {/* 메뉴 아이템들 */}
-          {menuItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={toggleMenu}
-              className="block px-6 py-3 text-white text-xl"
+            <div>
+              {/* 메뉴 아이템들 */}
+              {menuItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={toggleMenu}
+                  className="block px-6 py-3 text-white text-xl"
+                >
+                  {item.text}
+                </Link>
+              ))}
+            </div>
+            <button
+              className="text-white text-xl absolute bottom-5 right-8"
+              onClick={() => signIn()}
             >
-              {item.text}
-            </Link>
-          ))}
-        </div>
-        <div className="absolute bottom-5 right-5">
-          <Link href="/login" className="text-white text-xl">
-            로그인
-          </Link>
-        </div>
+              로그아웃
+            </button>
+          </div>
+        ) : (
+          <div className="absolute bottom-5 right-5">
+            <button className="text-white text-xl" onClick={() => signIn()}>
+              로그인
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
